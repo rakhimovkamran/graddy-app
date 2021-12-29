@@ -5,7 +5,7 @@ import "assets/css/index.css"
 
 const App = () => {
     return (
-        <main className="container mx-auto">
+        <main className="max-w-5xl mx-auto px-6">
             <Routing />
         </main>
     )
