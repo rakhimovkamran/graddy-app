@@ -3,20 +3,24 @@ import { AngleIcon } from "common/components/atoms/Icon"
 
 interface IAngleProps {
     angle: number
+    onToggle: () => void
+    isAngleVisible: boolean
 }
 
-export const Angle: FC<IAngleProps> = ({ angle }) => {
+export const Angle: FC<IAngleProps> = ({ angle, onToggle, isAngleVisible }) => {
     return (
         <section
-            className={
-                "flex gap-2 items-center opacity-60 transition-opacity cursor-pointer hover:opacity-100"
-            }
+            onClick={onToggle}
+            className={`flex gap-2 select-none items-center transition-opacity cursor-pointer hover:opacity-100 ${
+                isAngleVisible ? "opacity-100" : "opacity-60"
+            }`}
         >
             <AngleIcon
                 style={{
                     transform: `rotate(${angle}deg)`,
                 }}
             />
+
             <span className={"text-sm text-slate-400"}>
                 {angle.toFixed(0)}°
             </span>

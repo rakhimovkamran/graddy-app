@@ -9,15 +9,11 @@ const GRADIENTS_DATA = DATA as IGradient[]
 const Home = () => {
     return (
         <main>
-            <Header />
-
-            <section>
-                <Grid>
-                    {GRADIENTS_DATA.map((gradient, idx) => (
-                        <Card key={idx} initialGradient={gradient} />
-                    ))}
-                </Grid>
-            </section>
+            <Grid>
+                {GRADIENTS_DATA.map((gradient, idx) => (
+                    <Card key={idx} initialGradient={gradient} />
+                ))}
+            </Grid>
         </main>
     )
 }

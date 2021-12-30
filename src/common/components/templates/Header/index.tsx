@@ -12,7 +12,7 @@ export const Header = () => {
                     "text-5xl font-bold text-gray-800 transition-colors dark:text-slate-100 text-center w-full md:text-left"
                 }
             >
-                Graddy
+                graddy.
             </h1>
 
             <ThemeToggle />

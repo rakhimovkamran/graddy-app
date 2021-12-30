@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 
 import {
     CircularInput,
@@ -13,19 +13,31 @@ interface IAngleRangeProps {
 }
 
 export const AngleRange: FC<IAngleRangeProps> = ({ angle, onChange }) => {
-    const min = 0,
-        max = 360
+    const [value, setValue] = useState(angle / 360)
 
-    const valueWithinLimits = (v: number) => Math.min(Math.max(v, min), max)
+    const handleChange = (v: number) => {
+        setValue(v)
+        onChange(Number((v * 360).toFixed(0)))
+    }
 
     return (
-        <CircularInput
-            value={valueWithinLimits(angle)}
-            onChange={(v) => onChange(valueWithinLimits(v))}
-        >
-            <CircularTrack />
-            <CircularProgress />
-            <CircularThumb />
+        <CircularInput value={value} onChange={handleChange} radius={75}>
+            <CircularTrack strokeWidth={2} stroke={"rgba(255, 255, 255,0.2)"} />
+            <CircularProgress strokeWidth={10} stroke={"rgb(255, 255, 255)"} />
+            <CircularThumb fill={"#fff"} r={15} />
+
+            <text
+                fill={"rgba(255, 255, 255, 0.75)"}
+                className={"text-lg"}
+                textAnchor="middle"
+                dy="0.3em"
+                x={75}
+                y={75}
+            >
+                {(value * 360).toFixed(0)}°
+            </text>
+
+            <span>Hello</span>
         </CircularInput>
     )
 }

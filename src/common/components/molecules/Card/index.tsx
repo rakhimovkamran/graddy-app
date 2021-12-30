@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from "react"
 import { IGradient, TColor } from "common/interfaces"
 
-// import { AngleRange } from "common/components/molecules/AngleRange"
+import { AngleRange } from "common/components/molecules/AngleRange"
 import { generateGradient } from "common/utils"
 import { Angle } from "common/components/atoms"
 import { Colors } from "common/components/molecules/Colors"
@@ -12,14 +12,15 @@ interface ICardProps {
 
 export const Card: FC<ICardProps> = ({ initialGradient }) => {
     const [gradient, setGradient] = useState(initialGradient)
+    const [isAngleVisible, setAngleVisible] = useState(false)
 
     const backgroundImage = useMemo(
         () => generateGradient(gradient),
         [gradient]
     )
 
-    // const handleAngleChange = (angle: number) =>
-    //     setGradient((prev) => ({ ...prev, angle }))
+    const handleAngleChange = (angle: number) =>
+        setGradient((prev) => ({ ...prev, angle }))
 
     const handleColorChange = (color: TColor, id: number) => {
         setGradient((prev) => {
@@ -27,6 +28,20 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
                 [value] = color
 
             colors[id][0] = value
+
+            return {
+                ...prev,
+                colors,
+            }
+        })
+    }
+
+    const handleColorAdd = () => {
+        setGradient((prev) => {
+            const colors = [...prev.colors]
+            colors.push(["#FFFFFF", 100])
+
+            console.log(colors)
 
             return {
                 ...prev,
@@ -45,10 +60,18 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
                     backgroundImage,
                 }}
             >
-                {/*<AngleRange*/}
-                {/*    onChange={handleAngleChange}*/}
-                {/*    angle={gradient.angle}*/}
-                {/*/>*/}
+                <div
+                    className={`w-full h-full bg-black bg-opacity-20 flex justify-center items-center transition-all ${
+                        isAngleVisible
+                            ? "visible opacity-100"
+                            : "invisible opacity-0"
+                    }`}
+                >
+                    <AngleRange
+                        onChange={handleAngleChange}
+                        angle={gradient.angle}
+                    />
+                </div>
 
                 <div
                     className={
@@ -61,10 +84,15 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
             </section>
 
             <section className={"flex items-center justify-between"}>
-                <Angle angle={gradient.angle} />
+                <Angle
+                    onToggle={() => setAngleVisible((prev) => !prev)}
+                    isAngleVisible={isAngleVisible}
+                    angle={gradient.angle}
+                />
 
                 <div className={"flex"}>
                     <Colors
+                        onColorAdd={handleColorAdd}
                         onChange={handleColorChange}
                         colors={gradient.colors}
                     />
