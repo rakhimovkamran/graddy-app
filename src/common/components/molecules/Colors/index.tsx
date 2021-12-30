@@ -1,8 +1,8 @@
 import { FC } from "react"
 import { TColor } from "common/interfaces"
 
-import { Color } from "common/components/atoms"
 import { PlusCircleIcon } from "common/components/atoms/Icon"
+import { Color } from "common/components/atoms"
 
 interface IColorsProps {
     onChange: (color: TColor, id: number) => void

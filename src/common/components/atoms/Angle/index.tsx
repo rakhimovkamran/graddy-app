@@ -2,9 +2,9 @@ import { FC } from "react"
 import { AngleIcon } from "common/components/atoms/Icon"
 
 interface IAngleProps {
-    angle: number
-    onToggle: () => void
     isAngleVisible: boolean
+    onToggle: () => void
+    angle: number
 }
 
 export const Angle: FC<IAngleProps> = ({ angle, onToggle, isAngleVisible }) => {

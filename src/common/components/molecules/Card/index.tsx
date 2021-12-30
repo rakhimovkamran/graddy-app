@@ -2,9 +2,11 @@ import { FC, useMemo, useState } from "react"
 import { IGradient, TColor } from "common/interfaces"
 
 import { AngleRange } from "common/components/molecules/AngleRange"
-import { generateGradient } from "common/utils"
-import { Angle } from "common/components/atoms"
 import { Colors } from "common/components/molecules/Colors"
+
+import { Angle } from "common/components/atoms"
+
+import { generateGradient } from "common/utils"
 
 interface ICardProps {
     initialGradient: IGradient
@@ -41,8 +43,6 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
             const colors = [...prev.colors]
             colors.push(["#FFFFFF", 100])
 
-            console.log(colors)
-
             return {
                 ...prev,
                 colors,
@@ -53,6 +53,7 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
     return (
         <article className={"w-full transition-all relative"}>
             <section
+                onMouseLeave={() => isAngleVisible && setAngleVisible(false)}
                 className={
                     "w-full h-64 mb-4 gradient__card flex justify-center items-center"
                 }

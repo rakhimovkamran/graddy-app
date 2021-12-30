@@ -3,10 +3,9 @@ import { ChangeEvent, FC, useState } from "react"
 import { TColor } from "common/interfaces"
 
 interface IColorProps {
+    onChange: (value: TColor, id: number) => void
     value: TColor
     id: number
-
-    onChange: (value: TColor, id: number) => void
 }
 
 export const Color: FC<IColorProps> = ({ value, id, onChange }) => {

@@ -1,4 +1,5 @@
 import { FC, useState } from "react"
+import { Spring, config } from "react-spring/renderprops.cjs"
 
 import {
     CircularInput,
@@ -21,23 +22,37 @@ export const AngleRange: FC<IAngleRangeProps> = ({ angle, onChange }) => {
     }
 
     return (
-        <CircularInput value={value} onChange={handleChange} radius={75}>
-            <CircularTrack strokeWidth={2} stroke={"rgba(255, 255, 255,0.2)"} />
-            <CircularProgress strokeWidth={10} stroke={"rgb(255, 255, 255)"} />
-            <CircularThumb fill={"#fff"} r={15} />
+        <Spring to={{ value }} config={config.stiff}>
+            {(props) => (
+                <CircularInput
+                    value={props.value}
+                    onChange={handleChange}
+                    radius={75}
+                >
+                    <CircularTrack
+                        strokeWidth={2}
+                        stroke={"rgba(255, 255, 255,0.2)"}
+                    />
+                    <CircularProgress
+                        strokeWidth={10}
+                        stroke={"rgb(255, 255, 255)"}
+                    />
+                    <CircularThumb fill={"#fff"} r={15} />
 
-            <text
-                fill={"rgba(255, 255, 255, 0.75)"}
-                className={"text-lg"}
-                textAnchor="middle"
-                dy="0.3em"
-                x={75}
-                y={75}
-            >
-                {(value * 360).toFixed(0)}°
-            </text>
+                    <text
+                        fill={"rgba(255, 255, 255, 0.75)"}
+                        className={"text-lg"}
+                        textAnchor="middle"
+                        dy="0.3em"
+                        x={75}
+                        y={75}
+                    >
+                        {(value * 360).toFixed(0)}°
+                    </text>
 
-            <span>Hello</span>
-        </CircularInput>
+                    <span>Hello</span>
+                </CircularInput>
+            )}
+        </Spring>
     )
 }
