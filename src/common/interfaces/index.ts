@@ -1,6 +1,6 @@
 export type TColor = [string, number]
 
 export interface IGradient {
-    degree: number
+    angle: number
     colors: TColor[]
 }

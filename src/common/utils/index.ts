@@ -8,7 +8,5 @@ export const reduceColorStops = (colorStops: TColor[]) => {
 }
 
 export const generateGradient = (data: IGradient) => {
-    return `linear-gradient(${data.degree}deg, ${reduceColorStops(
-        data.colors
-    )})`
+    return `linear-gradient(${data.angle}deg, ${reduceColorStops(data.colors)})`
 }

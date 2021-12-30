@@ -1,9 +1,23 @@
+import { IGradient } from "common/interfaces"
+
+import { Grid, Header } from "common/components/templates"
+import { Card } from "common/components/molecules"
+
+import DATA from "common/data/gradients.json"
+const GRADIENTS_DATA = DATA as IGradient[]
+
 const Home = () => {
     return (
         <main>
-            <nav className={"w-full h-32 flex items-center"}>
-                <h1 className={"text-5xl font-bold text-gray-800"}>Graddy</h1>
-            </nav>
+            <Header />
+
+            <section>
+                <Grid>
+                    {GRADIENTS_DATA.map((gradient, idx) => (
+                        <Card key={idx} initialGradient={gradient} />
+                    ))}
+                </Grid>
+            </section>
         </main>
     )
 }
