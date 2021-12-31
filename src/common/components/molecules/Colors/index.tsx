@@ -1,4 +1,6 @@
 import { FC } from "react"
+import { LayoutGroup } from "framer-motion"
+
 import { TColor } from "common/interfaces"
 
 import { PlusCircleIcon } from "common/components/atoms/Icon"
@@ -13,9 +15,16 @@ interface IColorsProps {
 export const Colors: FC<IColorsProps> = ({ colors, onChange, onColorAdd }) => {
     return (
         <section className={"flex gap-2 items-center"}>
-            {colors.map((color, idx) => (
-                <Color onChange={onChange} value={color} id={idx} key={idx} />
-            ))}
+            <LayoutGroup>
+                {colors.map((color, idx) => (
+                    <Color
+                        onChange={onChange}
+                        value={color}
+                        id={idx}
+                        key={idx}
+                    />
+                ))}
+            </LayoutGroup>
 
             <PlusCircleIcon
                 onClick={() => colors.length <= 5 && onColorAdd()}

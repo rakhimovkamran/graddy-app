@@ -37,7 +37,11 @@ export const AngleRange: FC<IAngleRangeProps> = ({ angle, onChange }) => {
                         strokeWidth={10}
                         stroke={"rgb(255, 255, 255)"}
                     />
-                    <CircularThumb fill={"#fff"} r={15} />
+                    <CircularThumb
+                        className={"cursor-all-scroll"}
+                        fill={"#fff"}
+                        r={15}
+                    />
 
                     <text
                         fill={"rgba(255, 255, 255, 0.75)"}

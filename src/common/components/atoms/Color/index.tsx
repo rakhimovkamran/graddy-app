@@ -1,4 +1,5 @@
 import { ChangeEvent, FC, useState } from "react"
+import { motion } from "framer-motion"
 
 import { TColor } from "common/interfaces"
 
@@ -19,7 +20,8 @@ export const Color: FC<IColorProps> = ({ value, id, onChange }) => {
     }
 
     return (
-        <input
+        <motion.input
+            layout
             onChange={handleChange}
             type={"color"}
             value={color}
