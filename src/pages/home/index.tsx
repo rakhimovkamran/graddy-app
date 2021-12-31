@@ -1,6 +1,6 @@
 import { IGradient } from "common/interfaces"
 
-import { Grid, Header } from "common/components/templates"
+import { Grid } from "common/components/templates"
 import { Card } from "common/components/molecules"
 
 import DATA from "common/data/gradients.json"
