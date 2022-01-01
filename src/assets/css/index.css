@@ -58,3 +58,15 @@
         var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0
             var(--ray-size);
 }
+
+.copy_btn:hover span {
+    width: auto;
+    visibility: visible;
+    opacity: 1;
+    margin-left: 10px;
+    transform: translateX(0px);
+}
+
+.gradient__card:hover .toolbar {
+    opacity: 1;
+}

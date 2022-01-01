@@ -2,22 +2,26 @@ import { FC, useMemo, useState } from "react"
 
 import { IGradient, TColor } from "common/interfaces"
 
-import { AngleRange } from "common/components/molecules/AngleRange"
-import { Colors } from "common/components/molecules/Colors"
-import { Angle } from "common/components/atoms"
+import { AngleRange, Colors, Toolbar } from "common/components/molecules"
 import { generateGradient, handleCopyToClipboard } from "common/utils"
+import { Angle } from "common/components/atoms"
 
 interface ICardProps {
     initialGradient: IGradient
 }
 
 export const Card: FC<ICardProps> = ({ initialGradient }) => {
-    const [gradient, setGradient] = useState(initialGradient)
-    const [isAngleVisible, setAngleVisible] = useState(false)
+    const [gradient, setGradient] = useState(initialGradient),
+        [isAngleVisible, setAngleVisible] = useState(false)
 
     const backgroundImage = useMemo(
         () => generateGradient(gradient),
         [gradient]
+    )
+
+    const isResetAvailable = useMemo(
+        () => JSON.stringify(gradient) !== JSON.stringify(initialGradient),
+        [gradient, initialGradient]
     )
 
     const handleAngleChange = (angle: number) =>
@@ -50,15 +54,18 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
     }
 
     return (
-        <article
-            onClick={() =>
-                handleCopyToClipboard(
-                    `background: ${generateGradient(gradient)};`,
-                    "Gradient was copied !"
-                )
-            }
-            className={"w-full transition-all relative"}
-        >
+        <article className={"w-full transition-all gradient__card relative"}>
+            <Toolbar
+                onReset={() => setGradient(initialGradient)}
+                isResetAvailable={isResetAvailable}
+                onCopy={() =>
+                    handleCopyToClipboard(
+                        `background: ${generateGradient(gradient)};`,
+                        "Gradient was copied !"
+                    )
+                }
+            />
+
             <section
                 onMouseLeave={() => isAngleVisible && setAngleVisible(false)}
                 className={

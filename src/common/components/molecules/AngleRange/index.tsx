@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useState, useEffect } from "react"
 import { Spring, config } from "react-spring/renderprops.cjs"
 
 import {
@@ -20,6 +20,8 @@ export const AngleRange: FC<IAngleRangeProps> = ({ angle, onChange }) => {
         setValue(v)
         onChange(Number((v * 360).toFixed(0)))
     }
+
+    useEffect(() => setValue(angle / 360), [angle])
 
     return (
         <Spring to={{ value }} config={config.stiff}>
