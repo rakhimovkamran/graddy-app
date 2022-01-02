@@ -20,8 +20,8 @@ export const Colors: FC<IColorsProps> = ({ colors, onChange, onColorAdd }) => {
                     <Color
                         onChange={onChange}
                         value={color}
-                        id={idx}
                         key={idx}
+                        id={idx}
                     />
                 ))}
             </LayoutGroup>

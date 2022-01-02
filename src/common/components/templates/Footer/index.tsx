@@ -10,7 +10,7 @@ export const Footer = () => {
             </span>
 
             <span className={"text-gray-400 dark:text-gray-600 text-sm"}>
-                ©{new Date().getFullYear()} Graddy
+                © {new Date().getFullYear()} Graddy
             </span>
         </footer>
     )

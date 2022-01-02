@@ -20,17 +20,20 @@ export const Color: FC<IColorProps> = ({ value, id, onChange }) => {
     }
 
     return (
-        <motion.input
-            layout
-            onChange={handleChange}
-            type={"color"}
-            value={color}
-            style={{
-                backgroundColor: color,
-            }}
-            className={
-                "w-4 h-4 cursor-pointer opacity-90 transition-opacity hover:opacity-100 rounded-full border-none outline-none"
-            }
-        />
+        <>
+            <motion.input
+                layout
+                onChange={handleChange}
+                data-tip={color}
+                type={"color"}
+                value={color}
+                style={{
+                    backgroundColor: color,
+                }}
+                className={
+                    "w-4 h-4 cursor-pointer opacity-90 transition-opacity hover:opacity-100 rounded-full border-none outline-none"
+                }
+            />
+        </>
     )
 }

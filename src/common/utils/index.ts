@@ -18,3 +18,8 @@ export const handleCopyToClipboard = async (
     await navigator.clipboard.writeText(data)
     toast(successMessage)
 }
+
+export const generateRandomColor = () =>
+    `#${Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .toUpperCase()}`

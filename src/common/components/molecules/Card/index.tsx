@@ -3,7 +3,11 @@ import { FC, useMemo, useState } from "react"
 import { IGradient, TColor } from "common/interfaces"
 
 import { AngleRange, Colors, Toolbar } from "common/components/molecules"
-import { generateGradient, handleCopyToClipboard } from "common/utils"
+import {
+    generateGradient,
+    generateRandomColor,
+    handleCopyToClipboard,
+} from "common/utils"
 import { Angle } from "common/components/atoms"
 
 interface ICardProps {
@@ -44,7 +48,7 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
     const handleColorAdd = () => {
         setGradient((prev) => {
             const colors = [...prev.colors]
-            colors.push(["#FFFFFF", 100])
+            colors.push([generateRandomColor(), 100])
 
             return {
                 ...prev,

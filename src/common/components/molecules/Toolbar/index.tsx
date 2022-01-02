@@ -1,9 +1,8 @@
 import { FC } from "react"
-
-import { ToolbarAction } from "common/components/atoms"
+import { AnimatePresence } from "framer-motion"
 
 import { CodeIcon, ResetIcon } from "common/components/atoms/Icon"
-import { AnimatePresence } from "framer-motion"
+import { ToolbarAction } from "common/components/atoms"
 
 interface IToolbarProps {
     isResetAvailable: boolean
