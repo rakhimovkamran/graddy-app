@@ -3,7 +3,7 @@ import { LayoutGroup } from "framer-motion"
 
 import { TColor } from "common/interfaces"
 
-import { PlusCircleIcon } from "common/components/atoms/Icon"
+import { PlusCircleIcon, SlidersIcon } from "common/components/atoms/Icon"
 import { Color } from "common/components/atoms"
 
 interface IColorsProps {
@@ -33,6 +33,10 @@ export const Colors: FC<IColorsProps> = ({ colors, onChange, onColorAdd }) => {
                         ? "hover:opacity-100"
                         : "cursor-not-allowed"
                 }`}
+            />
+
+            <SlidersIcon
+                className={`w-5 h-5 cursor-pointer opacity-70 transition-opacity hover:opacity-100`}
             />
         </section>
     )
