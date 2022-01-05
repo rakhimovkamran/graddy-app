@@ -24,7 +24,10 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
     )
 
     const isResetAvailable = useMemo(
-        () => JSON.stringify(gradient) !== JSON.stringify(initialGradient),
+        () =>
+            JSON.stringify(gradient) !== JSON.stringify(initialGradient) ||
+            JSON.stringify(gradient.colors) !==
+                JSON.stringify(initialGradient.colors),
         [gradient, initialGradient]
     )
 
@@ -33,7 +36,7 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
 
     const handleColorChange = (color: TColor, id: number) => {
         setGradient((prev) => {
-            const { colors } = prev,
+            const { colors } = { ...prev },
                 [value] = color
 
             colors[id][0] = value
@@ -45,6 +48,7 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
         })
     }
 
+    // TODO: Add when color sliders will be ready
     const handleColorAdd = () => {
         setGradient((prev) => {
             const colors = [...prev.colors]
@@ -58,7 +62,12 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
     }
 
     return (
-        <article className={"w-full transition-all gradient__card relative"}>
+        <article
+            onClick={() => {
+                console.log(initialGradient, gradient)
+            }}
+            className={"w-full transition-all gradient__card relative"}
+        >
             <Toolbar
                 onReset={() => setGradient(initialGradient)}
                 isResetAvailable={isResetAvailable}
