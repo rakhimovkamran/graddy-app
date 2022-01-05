@@ -1,4 +1,4 @@
-import { FC, useRef, useMemo, useState, useEffect } from "react"
+import { FC, useRef, useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
 import { TColor } from "common/interfaces"
@@ -10,7 +10,6 @@ interface IColorSlidersProps {
 export const ColorSliders: FC<IColorSlidersProps> = ({ colors }) => {
     const parentRef = useRef<any>(null)
     const [parentWidth, setParentWidth] = useState(0)
-    const [x, setX] = useState()
 
     useEffect(() => {
         if (parentRef.current.clientWidth) {
