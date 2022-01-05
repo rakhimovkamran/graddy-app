@@ -39,7 +39,7 @@ export const ColorSliders: FC<IColorSlidersProps> = ({ colors, onChange }) => {
             <div
                 ref={sliderRef}
                 className={
-                    "border-b border-gray-700 z-40 w-full absolute top-0 left-0"
+                    "border-b transition-all duration-300 border-gray-200 dark:border-gray-700 z-40 w-full absolute top-0 left-0"
                 }
             />
 
@@ -47,7 +47,7 @@ export const ColorSliders: FC<IColorSlidersProps> = ({ colors, onChange }) => {
                 <motion.button
                     style={{
                         backgroundColor: color,
-                        // left: percentage + "%",
+                        left: percentage + "%",
                     }}
                     key={idx}
                     drag={"x"}
