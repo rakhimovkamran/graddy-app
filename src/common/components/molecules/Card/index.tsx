@@ -2,7 +2,12 @@ import { FC, useMemo, useState } from "react"
 
 import { IGradient, TColor } from "common/interfaces"
 
-import { AngleRange, Colors, Toolbar } from "common/components/molecules"
+import {
+    AngleRange,
+    Colors,
+    ColorSliders,
+    Toolbar,
+} from "common/components/molecules"
 import {
     generateGradient,
     generateRandomColor,
@@ -116,6 +121,10 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
                         colors={gradient.colors}
                     />
                 </div>
+            </section>
+
+            <section className={"mt-10"}>
+                <ColorSliders colors={gradient.colors} />
             </section>
         </article>
     )
