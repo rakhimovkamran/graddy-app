@@ -23,3 +23,11 @@ export const generateRandomColor = () =>
     `#${Math.floor(Math.random() * 16777215)
         .toString(16)
         .toUpperCase()}`
+
+// export const calculateNumberFromPercentage = (
+//     x: number,
+//     total: number
+// ): number => {
+//
+//     return total - (x * total) / 100
+// }

@@ -124,7 +124,12 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
             </section>
 
             <section className={"mt-10"}>
-                <ColorSliders colors={gradient.colors} />
+                <ColorSliders
+                    onChange={(colors) => {
+                        setGradient((prev) => ({ ...prev, colors }))
+                    }}
+                    colors={gradient.colors}
+                />
             </section>
         </article>
     )

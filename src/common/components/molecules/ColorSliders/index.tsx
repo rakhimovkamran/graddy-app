@@ -5,42 +5,67 @@ import { TColor } from "common/interfaces"
 
 interface IColorSlidersProps {
     colors: TColor[]
+    onChange: (colors: TColor[]) => void
 }
 
-export const ColorSliders: FC<IColorSlidersProps> = ({ colors }) => {
-    const parentRef = useRef<any>(null)
-    const [parentWidth, setParentWidth] = useState(0)
+export const ColorSliders: FC<IColorSlidersProps> = ({ colors, onChange }) => {
+    const [mutableColors, setMutableColors] = useState<TColor[]>(colors)
 
-    useEffect(() => {
-        if (parentRef.current.clientWidth) {
-            setParentWidth(parentRef.current.clientWidth)
-        }
-    }, [parentRef])
+    const sliderRef = useRef<any>(null)
+
+    const dragValue = (value: number, initial: number, itemIdx: number) => {
+        const clientWidth = sliderRef?.current?.clientWidth
+        const initialValueInPx = (initial / 100) * clientWidth
+
+        const reducedValue = (
+            (Number((value + initialValueInPx).toFixed(0)) * 100) /
+            clientWidth
+        ).toFixed(0)
+
+        setMutableColors((prev) => {
+            const colors = [...prev]
+            colors[itemIdx][1] = +reducedValue
+
+            return colors
+        })
+
+        onChange(mutableColors)
+    }
+
+    useEffect(() => setMutableColors(colors), [colors])
 
     return (
         <section className={"w-full relative"}>
             <div
-                ref={parentRef}
+                ref={sliderRef}
                 className={
                     "border-b border-gray-700 z-40 w-full absolute top-0 left-0"
                 }
             />
 
-            {colors.map(([color, percentage], idx) => (
+            {mutableColors.map(([color, percentage], idx) => (
                 <motion.button
-                    initial={{
-                        left: `${percentage}%`,
+                    style={{
+                        backgroundColor: color,
+                        // left: percentage + "%",
                     }}
                     key={idx}
                     drag={"x"}
+                    onDragEnd={(e) => {
+                        const [translateX] = (
+                            e.target as HTMLButtonElement
+                        ).style.transform.split(" ")
+
+                        const value = Number(
+                            translateX.replace(/[a-z]|[(]|[)]/gi, "")
+                        )
+
+                        dragValue(value, 0, idx)
+                    }}
                     whileDrag={{ scale: 1.2 }}
-                    dragConstraints={{
-                        right: parentWidth,
-                        left: 0,
-                    }}
-                    style={{
-                        backgroundColor: color,
-                    }}
+                    dragConstraints={sliderRef}
+                    dragElastic={0}
+                    dragMomentum={false}
                     className={"w-4 h-4 z-50 -top-2 absolute rounded-full"}
                 />
             ))}
