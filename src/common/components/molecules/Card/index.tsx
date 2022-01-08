@@ -1,14 +1,14 @@
 import { FC, useMemo, useState } from "react"
 
-import { IGradient, TColor } from "common/interfaces"
-
 import { AngleRange, Colors, Toolbar } from "common/components/molecules"
-import {
-    generateGradient,
-    generateRandomColor,
-    handleCopyToClipboard,
-} from "common/utils"
+import { IGradient, TColor } from "common/interfaces"
 import { Angle } from "common/components/atoms"
+
+import {
+    handleCopyToClipboard,
+    generateRandomColor,
+    generateGradient,
+} from "common/utils"
 
 interface ICardProps {
     initialGradient: IGradient
@@ -62,12 +62,7 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
     }
 
     return (
-        <article
-            onClick={() => {
-                console.log(initialGradient, gradient)
-            }}
-            className={"w-full transition-all gradient__card relative"}
-        >
+        <article className={"w-full transition-all gradient__card relative"}>
             <Toolbar
                 onReset={() => setGradient(initialGradient)}
                 isResetAvailable={isResetAvailable}

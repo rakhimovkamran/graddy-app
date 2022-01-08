@@ -2,9 +2,9 @@ import { FC, useState, useEffect } from "react"
 import { Spring, config } from "react-spring/renderprops.cjs"
 
 import {
+    CircularProgress,
     CircularInput,
     CircularTrack,
-    CircularProgress,
     CircularThumb,
 } from "react-circular-input"
 
@@ -55,8 +55,6 @@ export const AngleRange: FC<IAngleRangeProps> = ({ angle, onChange }) => {
                     >
                         {(value * 360).toFixed(0)}°
                     </text>
-
-                    <span>Hello</span>
                 </CircularInput>
             )}
         </Spring>

@@ -21,11 +21,11 @@ export const Color: FC<IColorProps> = ({ value, id, onChange }) => {
 
     return (
         <motion.input
-            layout
-            onChange={handleChange}
             data-tip={color.toUpperCase()}
+            onChange={handleChange}
             type={"color"}
             value={color}
+            layout
             style={{
                 backgroundColor: color,
             }}
