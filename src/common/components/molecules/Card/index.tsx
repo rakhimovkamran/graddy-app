@@ -1,4 +1,5 @@
 import { FC, useMemo, useState } from "react"
+import { motion } from "framer-motion"
 
 import { AngleRange, Colors, Toolbar } from "common/components/molecules"
 import { IGradient, TColor } from "common/interfaces"
@@ -62,7 +63,12 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
     }
 
     return (
-        <article className={"w-full transition-all gradient__card relative"}>
+        <motion.article
+            transition={{ type: "spring", duration: 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className={"w-full transition-all gradient__card relative"}
+        >
             <Toolbar
                 onReset={() => setGradient(initialGradient)}
                 isResetAvailable={isResetAvailable}
@@ -98,7 +104,7 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
 
                 <div
                     className={
-                        "w-full h-64 absolute -z-50 top-0 left-0 blur-xl gradient__card-blurred blur-xl"
+                        "w-full h-64 absolute -z-50 top-0 left-0 gradient__card-blurred blur-xl"
                     }
                     style={{
                         backgroundImage,
@@ -121,6 +127,6 @@ export const Card: FC<ICardProps> = ({ initialGradient }) => {
                     />
                 </div>
             </section>
-        </article>
+        </motion.article>
     )
 }

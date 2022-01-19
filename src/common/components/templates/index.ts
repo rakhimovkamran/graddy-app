@@ -1,3 +1,4 @@
-export { Grid } from "./Grid"
-export { Header } from "./Header"
+export { Pagination } from "./Pagination"
 export { Footer } from "./Footer"
+export { Header } from "./Header"
+export { Grid } from "./Grid"
