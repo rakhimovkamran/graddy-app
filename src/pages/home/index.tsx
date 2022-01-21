@@ -5,11 +5,13 @@ import { IGradient } from "common/interfaces"
 import { Grid, Pagination } from "common/components/templates"
 import { Card } from "common/components/molecules"
 
-import DATA from "common/data/gradients.json"
 import { splitIntoChunks } from "common/utils"
 
-const GRADIENTS_DATA = DATA as IGradient[]
-const chunkedData = splitIntoChunks(GRADIENTS_DATA, 9)
+import DATA from "common/data/gradients.json"
+
+const GRADIENTS_DATA = DATA as IGradient[],
+    chunkSize = 12,
+    chunkedData = splitIntoChunks(GRADIENTS_DATA, chunkSize)
 
 const Home = () => {
     const [activePage, setActivePage] = useState<number>(1)
@@ -19,11 +21,7 @@ const Home = () => {
     }, [activePage])
 
     return (
-        <main
-            onClick={() =>
-                console.log(chunkedData, chunkedData[activePage - 1])
-            }
-        >
+        <main>
             <Grid>
                 {data.map((gradient, idx) => (
                     <Card
