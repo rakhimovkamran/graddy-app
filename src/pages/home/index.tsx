@@ -16,9 +16,7 @@ const GRADIENTS_DATA = DATA as IGradient[],
 const Home = () => {
     const [activePage, setActivePage] = useState<number>(1)
 
-    const data = useMemo(() => {
-        return chunkedData[activePage - 1]
-    }, [activePage])
+    const data = useMemo(() => chunkedData[activePage - 1], [activePage])
 
     return (
         <main>
