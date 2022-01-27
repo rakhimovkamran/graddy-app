@@ -7,9 +7,8 @@ export const createColorStop = (colorStop: TColor) =>
 export const reduceColorStops = (colorStops: TColor[]) =>
     colorStops.map(createColorStop).join(", ")
 
-export const generateGradient = (data: IGradient) => {
-    return `linear-gradient(${data.angle}deg, ${reduceColorStops(data.colors)})`
-}
+export const generateGradient = (data: IGradient) =>
+    `linear-gradient(${data.angle}deg, ${reduceColorStops(data.colors)})`
 
 export const handleCopyToClipboard = async (
     data: string,
