@@ -8,4 +8,3 @@
 
 ### TODOS
 - [ ] Add (Color Stop Slider) Component
-- [ ] Re-create Reset Functionality
