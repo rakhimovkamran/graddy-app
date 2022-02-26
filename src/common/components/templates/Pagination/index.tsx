@@ -3,8 +3,8 @@ import { FC, useState } from "react"
 import { ChevronLeftIcon, ChevronRightIcon } from "common/components/atoms/Icon"
 
 interface IPaginationProps {
-    total: number
     onChange: (page: number) => void
+    total: number
 }
 
 export const Pagination: FC<IPaginationProps> = ({ total, onChange }) => {
@@ -13,7 +13,6 @@ export const Pagination: FC<IPaginationProps> = ({ total, onChange }) => {
     const handleDecrement = () => {
         if (activePage >= 2) {
             setActivePage((prev) => prev - 1)
-            console.log(activePage)
             onChange(activePage - 1)
         }
     }
@@ -21,7 +20,6 @@ export const Pagination: FC<IPaginationProps> = ({ total, onChange }) => {
     const handleIncrement = () => {
         if (activePage < total) {
             setActivePage((prev) => prev + 1)
-            console.log(activePage)
             onChange(activePage + 1)
         }
     }
